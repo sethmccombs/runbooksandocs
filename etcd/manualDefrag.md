@@ -59,3 +59,9 @@ sh-4.2$ ETCDCTL_API=3 etcdctl endpoint status --write-out="table" --cert="/etc/k
 +----------------+------------------+---------+---------+-----------+------------+-----------+------------+--------------------+--------+
 
 ```
+
+
+Check all nodes 
+```
+date; for i in $(kc get pods -n kube-system | grep '^etcd' | awk '{print $1}'); do echo "$i"; kc exec -ti "$i" -n kube-system -c etcd-container -- sh -c "ETCDCTL_API=3 etcdctl endpoint status --write-out='table' --cert='/etc/kubernetes/ssl/etcd-client.pem' --key='/etc/kubernetes/ssl/etcd-client-key.pem' --cacert='/etc/kubernetes/ssl/ca.pem'"; done
+```
