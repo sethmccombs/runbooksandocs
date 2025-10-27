@@ -57,3 +57,10 @@ else
   warn "brew is not installed" 
   error "go to brew.sh to install"
 fi
+
+if command_exists kubectl; then 
+  info "kubectl is installed"
+else
+  warn "kubectl is not installed" 
+  error "go to https://kubernetes.io/docs/tasks/tools/#kubectl to install"
+fi
